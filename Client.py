@@ -22,18 +22,19 @@ def main():
     global HOST
     global PORT
     MYSOCKET.connect((HOST, PORT))
-    itsActive = True
+    keepActive = True
 
     RECV_THREAD = Thread(target=receive)
     RECV_THREAD.start()
 
-    while itsActive:
+    while keepActive:
         inputStr = input()
         if inputStr == 'exit()':
-            itsActive = False
+            keepActive = False
             print('Hasta la vista beibe ;)')
         else:
-            MYSOCKET.send(str.encode(inputStr))
+            print(f'cadena metida: {inputStr}')
+            # MYSOCKET.send(str.encode(inputStr))
         
     MYSOCKET.close()
 
