@@ -1,7 +1,7 @@
 import socket
 
-HOST = '127.0.0.1'      # El hostname o IP del servidor
-PORT = 1020                 # El puerto que usa el servidor
+HOST = '172.16.8.23'      # El hostname o IP del servidor
+PORT = 10204                 # El puerto que usa el servidor
 BUFFERSIZE = 1024           # Tamano del buffer
 MYSOCKET = socket.socket()  # Iniciamos el socket
 MYSOCKET.bind((HOST, PORT)) # Lo ligamos al host y al puerto
