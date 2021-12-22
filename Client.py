@@ -25,15 +25,6 @@ def main():
     global HOST
     global PORT
     MYSOCKET.connect((HOST, PORT))
-
-    RESPONSE = MYSOCKET.recv(BUFFERSIZE).decode('UTF-8')
-    print (RESPONSE)
-    PORT = RESPONSE.split(':')
-    PORT = int(PORT[1].strip())
-    MYSOCKET.close()
-
-    MYSOCKET.connect((HOST, PORT))
-
     keepActive = True
 
     RECV_THREAD = Thread(target=receive)
@@ -45,7 +36,8 @@ def main():
             keepActive = False
             print('Hasta la vista beibe ;)')
         else:
-            MYSOCKET.send(str.encode(inputStr))
+            print(f'cadena metida: {inputStr}')
+            # MYSOCKET.send(str.encode(inputStr))
         
     MYSOCKET.close()
 
