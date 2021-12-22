@@ -49,8 +49,7 @@ def main():
         print (f'{ADDR} conectado!')
         successCon, port = balancea()
         if successCon:
-            port += 1
-            CONN.send(str.encode(f'Te puedes conectar al {port}'))
+            CONN.send(str.encode(f'Te puedes conectar al: {port}'))
         else:
             CONN.send(str.encode('Ningun servidor disponible'))
 

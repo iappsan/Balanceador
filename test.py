@@ -1,6 +1,4 @@
-
-
-PORTLIST = [2030, 2031, 2032, 2033, 2034]
-
-print (len(PORTLIST))
-print (PORTLIST[len(PORTLIST)-1])
+test = 'Te puedes conectar al: 3211'
+str2 = test.split(':')
+str2 = int(str2[1].strip())+2
+print (str2)
