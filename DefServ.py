@@ -7,11 +7,12 @@ MYSOCKET = socket.socket()  # Iniciamos el socket
 def main():
     global MYSOCKET
     global HOST
-    PORT = input("Introduce el puerto para iniciar este servidor: \n")
+    PORT = int(input("Introduce el puerto para iniciar este servidor: \n"))
     MYSOCKET.bind((HOST, PORT)) # Lo ligamos al host y al puerto
+    MYSOCKET.listen(10)
 
     while True:
-        print(f'Servidor {HOST} en espera ... ')
+        print(f'Servidor {HOST}:{PORT} en espera ... ')
         CONN, ADDR = MYSOCKET.accept()      # En espera de cliente
         print (f'{ADDR} conectado!')
         CONN.send(str.encode(f"Estas conectado a {HOST}:{PORT}"))

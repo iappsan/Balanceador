@@ -1,7 +1,7 @@
 import socket
 from threading import Thread
 
-HOST = ''
+HOST = '127.0.0.1'
 PORT = 1020
 BUFFERSIZE = 1024
 MYSOCKET = socket.socket()

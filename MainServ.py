@@ -8,14 +8,16 @@ MYSOCKET.bind((HOST, PORT)) # Lo ligamos al host y al puerto
 MYSOCKET.listen(5)          # Definimos el numero de conecciones a escuchar
 IP = '127.0.0.1'
 PORTLIST = [2030, 2031, 2032, 2033, 2034]
+contador = len(PORTLIST)-1
 
 def balancea():
     global IP
     global PORTLIST
     successCon = False
-    contador = len(PORTLIST)-1
+    global contador
+    servNotChecked = len(PORTLIST)
 
-    while not successCon and contador>0:
+    while not successCon and servNotChecked > 0:
         try:
             newSocket = socket.socket()
             newSocket.connect((IP,PORTLIST[contador]))
@@ -26,6 +28,9 @@ def balancea():
         except Exception as ex:
             successCon = False
         finally:
+            if contador == 0:
+                contador = len(PORTLIST)-1
+            else:
                 contador -= 1;
     
     if not successCon:
@@ -44,6 +49,7 @@ def main():
         print (f'{ADDR} conectado!')
         successCon, port = balancea()
         if successCon:
+            port += 1
             CONN.send(str.encode(f'Te puedes conectar al {port}'))
         else:
             CONN.send(str.encode('Ningun servidor disponible'))
